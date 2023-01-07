@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Spin } from "antd";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import api from "../../../api";
 import { formatIPFS } from "../../../lib/tool";
@@ -61,10 +62,10 @@ export default function Main() {
   const [isSelf, setIsSelf] = useState<boolean>(false);
   const [showRadorGif, setShowRadorGif] = useState(false);
   const [downloadModalVisible, setDownloadModalVisible] = useState(false);
-  
-  const router = useRouter()
-  
-  const { address, queryProfileId } = router.query
+
+  const router = useRouter();
+
+  const { address, queryProfileId } = router.query;
 
   const [rador1, setRador1] = useState([
     { name: "Influence", value: 0 },
@@ -101,7 +102,7 @@ export default function Main() {
 
   const getRankList = async () => {
     setRankLoading(true);
-    const toQuery = rankType === 'overall' ? 'score' : rankType
+    const toQuery = rankType === "overall" ? "score" : rankType;
     const res: any = await api.get(`/lens/${toQuery}/rank/list`, {
       params: {
         limit: defaultPageLimit,
@@ -373,7 +374,7 @@ export default function Main() {
       //   )
       // );
     } else {
-      console.log('trig 2')
+      console.log("trig 2");
 
       // router.push(
       //   `/user/${address}?queryProfileId=${handlesList[activeHandleIndex].profileId}`
@@ -397,12 +398,37 @@ export default function Main() {
 
   return (
     <div className="toscore">
+      <Head>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Your 2022 Wrapped on Lens" />
+        <meta
+          name="twitter:description"
+          content="TopScore - a KNN3-powered scoring system based on Lens Protocol to evaluate this campaign."
+        />
+        <meta
+          property="twitter:image"
+          content="https://topscore.knn3.xyz/og-card.png"
+        />
+        <meta property="og:title" content="Your 2022 Wrapped on Lens" />
+        <meta
+          property="og:description"
+          content="TopScore - a KNN3-powered scoring system based on Lens Protocol to evaluate this campaign."
+        />
+        <meta
+          property="og:image"
+          content="https://topscore.knn3.xyz/og-card.png"
+        />
+        <meta property="og:locale'" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://topscore.knn3.xyz" />
+        <meta property="og:site_name" content="Topscore" />
+      </Head>
       <FixedIcon />
       <div className="toscore-head">
-        <HeaderBtn 
-        type={'main'}
-        profileId={currentProfile.profileId}
-        setDownloadModalVisible={() => setDownloadModalVisible(true)}
+        <HeaderBtn
+          type={"main"}
+          profileId={currentProfile.profileId}
+          setDownloadModalVisible={() => setDownloadModalVisible(true)}
         />
         <Wallet />
       </div>
@@ -664,58 +690,72 @@ export default function Main() {
             </div>
           </div>
           <div className="influence_curation">
-            {activeTag1 === 0 && (JSON.stringify(rankInfo) === "{}" || rankInfo.influScore == 0) && (
-              <div className="influence-default-text">
-                <p>THE COMPANIONS</p>
-                <p>MAKE THE JOURNEY &nbsp; NO LONGER &nbsp; LONELY.</p>
-              </div>
-            )}
+            {activeTag1 === 0 &&
+              (JSON.stringify(rankInfo) === "{}" ||
+                rankInfo.influScore == 0) && (
+                <div className="influence-default-text">
+                  <p>THE COMPANIONS</p>
+                  <p>MAKE THE JOURNEY &nbsp; NO LONGER &nbsp; LONELY.</p>
+                </div>
+              )}
 
-            {activeTag1 === 1 && (JSON.stringify(rankInfo) === "{}" || rankInfo.curationScore == 0) && (
-              <div className="curation-default-text">
-                <p>YOU WILL MEET LIKE MINDED PEOPLE</p>
-                <p>ALONG</p>
-                <p>THE</p>
-                <p>WAY</p>
-              </div>
-            )}
+            {activeTag1 === 1 &&
+              (JSON.stringify(rankInfo) === "{}" ||
+                rankInfo.curationScore == 0) && (
+                <div className="curation-default-text">
+                  <p>YOU WILL MEET LIKE MINDED PEOPLE</p>
+                  <p>ALONG</p>
+                  <p>THE</p>
+                  <p>WAY</p>
+                </div>
+              )}
 
-            {activeTag1 === 0 && JSON.stringify(rankInfo) !== "{}" && rankInfo.influScore !== 0 && (
-              <div className="left-rador">
-                <Radar
-                  data={rador2}
-                  id="top-rador_1"
-                  width={"100%"}
-                  height={"100%"}
-                  showTooltip={false}
-                  showList={(name: string) => console.log(name)}
-                />
-              </div>
-            )}
+            {activeTag1 === 0 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.influScore !== 0 && (
+                <div className="left-rador">
+                  <Radar
+                    data={rador2}
+                    id="top-rador_1"
+                    width={"100%"}
+                    height={"100%"}
+                    showTooltip={false}
+                    showList={(name: string) => console.log(name)}
+                  />
+                </div>
+              )}
 
-            {activeTag1 === 1 && JSON.stringify(rankInfo) !== "{}" && rankInfo.curationScore !== 0 && (
-              <div className="left-rador">
-                <Radar
-                  data={rador2}
-                  id="top-rador_1"
-                  width={"100%"}
-                  height={"100%"}
-                  showTooltip={false}
-                  showList={(name: string) => console.log(name)}
-                />
-              </div>
-            )}
+            {activeTag1 === 1 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.curationScore !== 0 && (
+                <div className="left-rador">
+                  <Radar
+                    data={rador2}
+                    id="top-rador_1"
+                    width={"100%"}
+                    height={"100%"}
+                    showTooltip={false}
+                    showList={(name: string) => console.log(name)}
+                  />
+                </div>
+              )}
 
-            {activeTag1 === 0 && JSON.stringify(rankInfo) !== "{}" && rankInfo.influScore !== 0 && (
-              <div className="right-text">
-                <p>In 2022,</p>
-                <p>you had the power to capture hearts and minds, growing your followers by{" "}
-                  <span>{new BN(userInfo.follower).toFormat()}</span> and achieving an influence score of{" "}
-                  <span>{new BN(rankInfo.influScore).toFixed(2)}</span>, ranking you{" "}
-                  <span>{new BN(rankInfo.influRank).toFormat()}</span> in the
-                  game of social media,
-                </p>
-                {/* <p>
+            {activeTag1 === 0 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.influScore !== 0 && (
+                <div className="right-text">
+                  <p>In 2022,</p>
+                  <p>
+                    you had the power to capture hearts and minds, growing your
+                    followers by{" "}
+                    <span>{new BN(userInfo.follower).toFormat()}</span> and
+                    achieving an influence score of{" "}
+                    <span>{new BN(rankInfo.influScore).toFixed(2)}</span>,
+                    ranking you{" "}
+                    <span>{new BN(rankInfo.influRank).toFormat()}</span> in the
+                    game of social media,
+                  </p>
+                  {/* <p>
                   growing your followers by{" "}
                   <span>{new BN(userInfo.follower).toFormat()}</span> and
                 </p>
@@ -729,29 +769,32 @@ export default function Main() {
                   game of social media,
                 </p> */}
 
-                {userInfo.follower > 0 ? (
-                  <p>A true sign of your authority and influence!</p>
-                ) : (
-                  <p>Let's strive to do better next year!</p>
-                )}
-              </div>
-            )}
-            {activeTag1 === 1 && JSON.stringify(rankInfo) !== "{}" && rankInfo.curationScore !== 0 && (
-              <div className="right-text">
-                <p>In 2022,</p>
-                <p>
-                  you mirrored{" "}
-                  <span>{new BN(userInfo.mirror).toFormat()}</span> pieces
-                  of content, resulting in{" "}
-                  <span>{new BN(rankInfo.curationScore).toFormat()}</span>{" "}
-                  Collects for the original authors. Your Curation score was{" "}
-                  <span>{new BN(rankInfo.curationScore).toFormat()}</span>, ranking you{" "}
-                  <span>{new BN(rankInfo.curationRank).toFormat()}</span>!
-                </p>
+                  {userInfo.follower > 0 ? (
+                    <p>A true sign of your authority and influence!</p>
+                  ) : (
+                    <p>Let's strive to do better next year!</p>
+                  )}
+                </div>
+              )}
+            {activeTag1 === 1 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.curationScore !== 0 && (
+                <div className="right-text">
+                  <p>In 2022,</p>
+                  <p>
+                    you mirrored{" "}
+                    <span>{new BN(userInfo.mirror).toFormat()}</span> pieces of
+                    content, resulting in{" "}
+                    <span>{new BN(rankInfo.curationScore).toFormat()}</span>{" "}
+                    Collects for the original authors. Your Curation score was{" "}
+                    <span>{new BN(rankInfo.curationScore).toFormat()}</span>,
+                    ranking you{" "}
+                    <span>{new BN(rankInfo.curationRank).toFormat()}</span>!
+                  </p>
 
-                <p>Let's take the time to your achievement in 2022!</p>
-              </div>
-            )}
+                  <p>Let's take the time to your achievement in 2022!</p>
+                </div>
+              )}
           </div>
           <div className="btn-group-2">
             <div>
@@ -767,173 +810,211 @@ export default function Main() {
             </div>
           </div>
           <div className="collect_pablication">
-            {activeTag2 === 0 && (JSON.stringify(rankInfo) === "{}" || rankInfo.creationScore == 0) && (
-              <div className="collect-default-text text-left">
+            {activeTag2 === 0 &&
+              (JSON.stringify(rankInfo) === "{}" ||
+                rankInfo.creationScore == 0) && (
+                <div className="collect-default-text text-left">
                   <p>PEOPLE SOMETIMES FORGET,</p>
                   <p>BUT BLOCKS DONT.</p>
-              </div>
-            )}
+                </div>
+              )}
 
-            {activeTag2 === 1 && (JSON.stringify(rankInfo) === "{}" || rankInfo.campaignScore == 0) && (
-              <div className="publication-default-text text-left">
-                <p>THE FLAME OF WISDOM ALWAYS BURSTS OUT IN THE DISCUSSION</p>
-              </div>
-            )}
+            {activeTag2 === 1 &&
+              (JSON.stringify(rankInfo) === "{}" ||
+                rankInfo.campaignScore == 0) && (
+                <div className="publication-default-text text-left">
+                  <p>THE FLAME OF WISDOM ALWAYS BURSTS OUT IN THE DISCUSSION</p>
+                </div>
+              )}
 
-            {activeTag2 === 0 && JSON.stringify(rankInfo) !== "{}" && rankInfo.creationScore !== 0 && (
-              <div className="left-text">
-                {userInfo.collectBy > 0 ? (
-                  <>
-                    <p>In 2022, </p>
-                    <p>you achieved incredible success with your content! </p>
-                    <p>
-                      Your content has been collected{" "}
-                      <span>{new BN(userInfo.collectBy).toFormat()}</span>{" "}
-                      times, and you have collected{" "}
-                      <span>{new BN(userInfo.collect).toFormat()}</span>{" "}pieces
-                      of valuable content.
-                    </p>
-                    <p>
-                      Your Creation score was{" "}
-                      <span>{new BN(rankInfo.creationScore).toFixed(2)}</span>{" "}
-                      ranking you{" "}
-                      <span>{new BN(rankInfo.creationRank).toFormat()}</span>!{" "}
-                    </p>
-                    <p>
-                      Your Collection score was also{" "}
-                      <span>{new BN(rankInfo.collectionScore).toFixed(2)}</span>
-                      , earning you a place at{" "}
-                      <span>{new BN(rankInfo.collectionRank).toFormat()}</span>{" "}
-                      on the leaderboard.{" "}
-                    </p>
-                    <p>It's been a great year for you and your creations!</p>
-                  </>
-                ) : (
-                  <>
-                    <p>In 2022,</p>
-                    <p>
-                      Your content has been collected{" "}
-                      <span>{new BN(userInfo.collectBy).toFormat()}</span>{" "}
-                      times, and you have collected{" "}
-                      <span>{new BN(userInfo.collect).toFormat()}</span> pieces
-                      of valuable content.
-                    </p>
-                    <p>
-                      Your Creation score was{" "}
-                      <span>{new BN(rankInfo.creationScore).toFixed(2)}</span>,
-                      ranking{" "}
-                      <span>{new BN(rankInfo.collectionRank).toFormat()}</span>,{" "}
-                    </p>
-                    <p>
-                      while your Collection score was{" "}
-                      <span>{new BN(rankInfo.collectionScore).toFixed(2)}</span>
-                      , ranking{" "}
-                      <span>{new BN(rankInfo.collectionRank).toFormat()}</span>.{" "}
-                    </p>
-                    <p>
-                      Continue to put in your best effort and aim for even
-                      greater achievements in the coming year!
-                    </p>
-                  </>
-                )}
-              </div>
-            )}
-            {activeTag2 === 1 && JSON.stringify(rankInfo) !== "{}" && rankInfo.campaignScore !== 0 && (
-              <div className="left-text">
-                {true ? (
-                  <>
-                    {/* 版本1(正常) */}
-                    <p>In 2022, </p>
-                    <p>you made a splash on social media! </p>
-                    <p>
-                      You posted <span>{new BN(userInfo.post).toFormat()}</span>{" "}
-                      times, made{" "}
-                      <span>{new BN(userInfo.comment).toFormat()}</span>{" "}
-                      Comments, and created{" "}
-                      <span>{new BN(userInfo.mirror).toFormat()}</span> Mirrors
-                      that really got people talking.{" "}
-                    </p>
-                    <p>
-                      You received an incredible{" "}
-                      <span>{new BN(userInfo.receiveComment).toFormat()}</span>{" "}
-                      Comments, and your content was Mirrored{" "}
-                      <span>{new BN(userInfo.receiveMirror).toFormat()}</span>{" "}
-                      times.{" "}
-                    </p>
-                    <p>
-                      Your Campaign score was{" "}
-                      <span>{new BN(rankInfo.campaignScore).toFixed(2)}</span>,
-                      making you a{" "}
-                      <span>{new BN(rankInfo.campaignRank).toFormat()}</span>{" "}
-                      ranker,{" "}
-                    </p>
-                    <p>
-                      and your Engagement score was{" "}
-                      <span>{new BN(rankInfo.engagementScore).toFixed(2)}</span>
-                      , giving you a place in{" "}
-                      <span>{new BN(rankInfo.engagementRank).toFormat()}</span>!{" "}
-                    </p>
-                    <p>You really set the bar for social media success!</p>
-                  </>
-                ) : (
-                  <>
-                    {/* 版本2(0 page rank <?) */}
-                    <p>In 2022, </p>
-                    <p>
-                      you posted <span>{new BN(userInfo.post).toFormat()}</span>{" "}
-                      Posts, <span>{new BN(userInfo.comment).toFormat()}</span>{" "}
-                      Comments,{" "}
-                      <span>{new BN(userInfo.mirror).toFormat()}</span> Mirrors,{" "}
-                    </p>
-                    <p>
-                      earned <span>_num_</span> Comments, were mirrored{" "}
-                      <span>_num_</span> times,{" "}
-                    </p>
-                    <p>
-                      your Campaign Score was{" "}
-                      <span>{new BN(rankInfo.campaignScore).toFixed(2)}</span>,
-                      ranking{" "}
-                      <span>{new BN(rankInfo.campaignRank).toFormat()}</span>,{" "}
-                    </p>
-                    <p>
-                      your Engagement Score was{" "}
-                      <span>{new BN(rankInfo.engagementScore).toFixed(2)}</span>
-                      , ranking{" "}
-                      <span>{new BN(rankInfo.engagementRank).toFormat()}</span>.{" "}
-                    </p>
-                    <p>
-                      Keep up the fantastic work and shoot for the stars in the
-                      next year!
-                    </p>
-                  </>
-                )}
-              </div>
-            )}
-            {activeTag2 === 0 && JSON.stringify(rankInfo) !== "{}" && rankInfo.creationScore !== 0 && (
-              <div className="right-rador">
-                <Radar
-                  data={rador3}
-                  id="top-rador_2"
-                  width={"100%"}
-                  height={"100%"}
-                  showTooltip={false}
-                  showList={(name: string) => console.log(name)}
-                />
-              </div>
-            )}
+            {activeTag2 === 0 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.creationScore !== 0 && (
+                <div className="left-text">
+                  {userInfo.collectBy > 0 ? (
+                    <>
+                      <p>In 2022, </p>
+                      <p>you achieved incredible success with your content! </p>
+                      <p>
+                        Your content has been collected{" "}
+                        <span>{new BN(userInfo.collectBy).toFormat()}</span>{" "}
+                        times, and you have collected{" "}
+                        <span>{new BN(userInfo.collect).toFormat()}</span>{" "}
+                        pieces of valuable content.
+                      </p>
+                      <p>
+                        Your Creation score was{" "}
+                        <span>{new BN(rankInfo.creationScore).toFixed(2)}</span>{" "}
+                        ranking you{" "}
+                        <span>{new BN(rankInfo.creationRank).toFormat()}</span>!{" "}
+                      </p>
+                      <p>
+                        Your Collection score was also{" "}
+                        <span>
+                          {new BN(rankInfo.collectionScore).toFixed(2)}
+                        </span>
+                        , earning you a place at{" "}
+                        <span>
+                          {new BN(rankInfo.collectionRank).toFormat()}
+                        </span>{" "}
+                        on the leaderboard.{" "}
+                      </p>
+                      <p>It's been a great year for you and your creations!</p>
+                    </>
+                  ) : (
+                    <>
+                      <p>In 2022,</p>
+                      <p>
+                        Your content has been collected{" "}
+                        <span>{new BN(userInfo.collectBy).toFormat()}</span>{" "}
+                        times, and you have collected{" "}
+                        <span>{new BN(userInfo.collect).toFormat()}</span>{" "}
+                        pieces of valuable content.
+                      </p>
+                      <p>
+                        Your Creation score was{" "}
+                        <span>{new BN(rankInfo.creationScore).toFixed(2)}</span>
+                        , ranking{" "}
+                        <span>
+                          {new BN(rankInfo.collectionRank).toFormat()}
+                        </span>
+                        ,{" "}
+                      </p>
+                      <p>
+                        while your Collection score was{" "}
+                        <span>
+                          {new BN(rankInfo.collectionScore).toFixed(2)}
+                        </span>
+                        , ranking{" "}
+                        <span>
+                          {new BN(rankInfo.collectionRank).toFormat()}
+                        </span>
+                        .{" "}
+                      </p>
+                      <p>
+                        Continue to put in your best effort and aim for even
+                        greater achievements in the coming year!
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
+            {activeTag2 === 1 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.campaignScore !== 0 && (
+                <div className="left-text">
+                  {true ? (
+                    <>
+                      {/* 版本1(正常) */}
+                      <p>In 2022, </p>
+                      <p>you made a splash on social media! </p>
+                      <p>
+                        You posted{" "}
+                        <span>{new BN(userInfo.post).toFormat()}</span> times,
+                        made <span>{new BN(userInfo.comment).toFormat()}</span>{" "}
+                        Comments, and created{" "}
+                        <span>{new BN(userInfo.mirror).toFormat()}</span>{" "}
+                        Mirrors that really got people talking.{" "}
+                      </p>
+                      <p>
+                        You received an incredible{" "}
+                        <span>
+                          {new BN(userInfo.receiveComment).toFormat()}
+                        </span>{" "}
+                        Comments, and your content was Mirrored{" "}
+                        <span>{new BN(userInfo.receiveMirror).toFormat()}</span>{" "}
+                        times.{" "}
+                      </p>
+                      <p>
+                        Your Campaign score was{" "}
+                        <span>{new BN(rankInfo.campaignScore).toFixed(2)}</span>
+                        , making you a{" "}
+                        <span>{new BN(rankInfo.campaignRank).toFormat()}</span>{" "}
+                        ranker,{" "}
+                      </p>
+                      <p>
+                        and your Engagement score was{" "}
+                        <span>
+                          {new BN(rankInfo.engagementScore).toFixed(2)}
+                        </span>
+                        , giving you a place in{" "}
+                        <span>
+                          {new BN(rankInfo.engagementRank).toFormat()}
+                        </span>
+                        !{" "}
+                      </p>
+                      <p>You really set the bar for social media success!</p>
+                    </>
+                  ) : (
+                    <>
+                      {/* 版本2(0 page rank <?) */}
+                      <p>In 2022, </p>
+                      <p>
+                        you posted{" "}
+                        <span>{new BN(userInfo.post).toFormat()}</span> Posts,{" "}
+                        <span>{new BN(userInfo.comment).toFormat()}</span>{" "}
+                        Comments,{" "}
+                        <span>{new BN(userInfo.mirror).toFormat()}</span>{" "}
+                        Mirrors,{" "}
+                      </p>
+                      <p>
+                        earned <span>_num_</span> Comments, were mirrored{" "}
+                        <span>_num_</span> times,{" "}
+                      </p>
+                      <p>
+                        your Campaign Score was{" "}
+                        <span>{new BN(rankInfo.campaignScore).toFixed(2)}</span>
+                        , ranking{" "}
+                        <span>{new BN(rankInfo.campaignRank).toFormat()}</span>,{" "}
+                      </p>
+                      <p>
+                        your Engagement Score was{" "}
+                        <span>
+                          {new BN(rankInfo.engagementScore).toFixed(2)}
+                        </span>
+                        , ranking{" "}
+                        <span>
+                          {new BN(rankInfo.engagementRank).toFormat()}
+                        </span>
+                        .{" "}
+                      </p>
+                      <p>
+                        Keep up the fantastic work and shoot for the stars in
+                        the next year!
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
+            {activeTag2 === 0 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.creationScore !== 0 && (
+                <div className="right-rador">
+                  <Radar
+                    data={rador3}
+                    id="top-rador_2"
+                    width={"100%"}
+                    height={"100%"}
+                    showTooltip={false}
+                    showList={(name: string) => console.log(name)}
+                  />
+                </div>
+              )}
 
-            {activeTag2 === 1 && JSON.stringify(rankInfo) !== "{}" && rankInfo.campaignScore !== 0 && (
-              <div className="right-rador">
-                <Radar
-                  data={rador3}
-                  id="top-rador_2"
-                  width={"100%"}
-                  height={"100%"}
-                  showTooltip={false}
-                  showList={(name: string) => console.log(name)}
-                />
-              </div>
-            )}
+            {activeTag2 === 1 &&
+              JSON.stringify(rankInfo) !== "{}" &&
+              rankInfo.campaignScore !== 0 && (
+                <div className="right-rador">
+                  <Radar
+                    data={rador3}
+                    id="top-rador_2"
+                    width={"100%"}
+                    height={"100%"}
+                    showTooltip={false}
+                    showList={(name: string) => console.log(name)}
+                  />
+                </div>
+              )}
           </div>
 
           {activeTag2 === 0 &&
