@@ -289,6 +289,9 @@ body {
 	line-height: 40px;
 	color: #fff;
 	font-size: 24px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #WEB3_CONNECT_MODAL_ID{
@@ -311,4 +314,9 @@ img{
 .ant-dropdown-menu{
 	background: #505050;
     color: rgba(255,255,255,0.8);
+}
+
+#__next{
+	height: 100%;
+	width: 100%;
 }

@@ -227,7 +227,7 @@ export default function Main() {
                   </Dropdown>
                   {
                     rankList.map((t, i) =>
-                      <div className="rank-item" key={i}>
+                      <div className="rank-rsrv-item" key={i}>
                         <span>{i + 1}</span>
                         <span><img src={imgHead} alt="" /></span>
                         <span>{t.name}</span>

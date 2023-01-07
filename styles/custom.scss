@@ -482,7 +482,7 @@
     margin-bottom: 20px;
   }
   
-  .rank-item {
+  .rank-rsrv-item {
     height: 60px;
     width: 100%;
     background: rgba(255, 255, 255, 0.1);
@@ -490,7 +490,11 @@
     line-height: 60px;
     padding: 0 10px;
     margin-bottom: 20px;
-  
+    
+    img{
+      display: inline-block;
+    }
+    
     >span:nth-child(1) {
       font-family: "Exan";
     }
@@ -526,6 +530,51 @@
     }
   }
   
+  .rank-item {
+    height: 60px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    line-height: 60px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+
+    img{
+      display: inline-block;
+    }
+
+    >span:nth-child(1) {
+      font-family: "Exan";
+    }
+    .avatar,
+    >span:nth-child(2) {
+      background-color: rgb(255, 51, 0);
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      vertical-align: middle;
+      line-height: 30px;
+      text-align: center;
+      margin: 0 10px 0 20px;
+    }
+
+    >span:nth-child(3) {
+      margin-right: 10px;
+      font-family: "Jura";
+    }
+
+    >span:nth-child(4) {
+      img {
+        vertical-align: middle;
+      }
+    }
+
+    >.score {
+      float: right;
+      font-family: "Jura";
+    }
+  }
+
   .pagination {
     margin: 0 auto;
     width: fit-content;
@@ -572,6 +621,9 @@
         line-height: 40px;
         text-align: center;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
   
       .twitter-icon {
@@ -1016,47 +1068,6 @@
       margin-bottom: 20px;
     }
   
-    .rank-item {
-      height: 60px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      line-height: 60px;
-      padding: 0 10px;
-      margin-bottom: 20px;
-  
-      >span:nth-child(1) {
-        font-family: "Exan";
-      }
-  
-      >span:nth-child(2) {
-        background-color: rgb(255, 51, 0);
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        vertical-align: middle;
-        line-height: 30px;
-        text-align: center;
-        margin: 0 10px 0 20px;
-      }
-  
-      >span:nth-child(3) {
-        margin-right: 10px;
-        font-family: "Jura";
-      }
-  
-      >span:nth-child(4) {
-        img {
-          vertical-align: middle;
-        }
-      }
-  
-      >span:nth-child(5) {
-        float: right;
-        font-family: "Jura";
-      }
-    }
-  
     .pagination {
       margin: 0 auto;
       width: fit-content;
@@ -1091,8 +1102,10 @@
       margin-right: 60px;
       margin-top: 72px;
       margin-bottom: 20px;
+      overflow: hidden;
       img{
         width: 800px;
+        float: right;
       }
     }
   
@@ -1107,8 +1120,8 @@
       }
   
       >div:nth-child(1) {
-        text-indent: 100px;
-  
+        margin-left: 100px;
+        
         img {
           height: 60px;
           image-rendering: -webkit-optimize-contrast;
