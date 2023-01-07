@@ -407,7 +407,7 @@ export default function Main() {
         />
         <meta
           property="twitter:image"
-          content="https://topscore.knn3.xyz/og-card.png"
+          content={`https://lens-api.knn3.xyz/api/lens/generate/shareImg/${currentProfile.profileId}`}
         />
         <meta property="og:title" content="Your 2022 Wrapped on Lens" />
         <meta
@@ -416,7 +416,7 @@ export default function Main() {
         />
         <meta
           property="og:image"
-          content="https://topscore.knn3.xyz/og-card.png"
+          content={`https://lens-api.knn3.xyz/api/lens/generate/shareImg/${currentProfile.profileId}`}
         />
         <meta property="og:locale'" content="en_US" />
         <meta property="og:type" content="website" />
