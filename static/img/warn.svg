@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="82px" viewBox="0 0 28 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 30</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Influence" transform="translate(-968.000000, -936.000000)">
+            <g id="Group-30" transform="translate(968.000000, 936.000000)">
+                <polygon id="Rectangle-Copy-10" fill="#B3E821" points="0 2.04608552e-12 28 2.04608552e-12 28 82 14 67.2204871 0 82"></polygon>
+                <text id="Earning" transform="translate(13.000000, 32.500000) rotate(90.000000) translate(-13.000000, -32.500000) " font-family="Helvetica-Bold, Helvetica" font-size="12" font-weight="bold" line-spacing="10" fill="#000000">
+                    <tspan x="-9.5" y="38.5">Earning</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
