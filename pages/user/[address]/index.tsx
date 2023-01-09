@@ -383,6 +383,8 @@ export default function Main() {
 
     const profile = handlesList[activeHandleIndex];
 
+    router.push(`/user/${address}?queryProfileId=${profile.profileId}`);
+
     setCurrentProfile(profile);
   }, [activeHandleIndex, handlesList]);
 
@@ -660,7 +662,9 @@ export default function Main() {
                       {/* <span>
                         <img src={imgRadarSmall} alt="" />
                       </span> */}
-                      <span className="score">Score: {new BN(t.score).toFixed(2)}</span>
+                      <span className="score">
+                        Score: {new BN(t.score).toFixed(2)}
+                      </span>
                     </div>
                   ))}
                 </Spin>
