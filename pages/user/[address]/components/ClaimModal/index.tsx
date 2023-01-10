@@ -126,17 +126,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
         <div className="claim-img" />
       )}
       <div className="claim-bottom">
-        {nftBalance > 0 ? (
-          <div>Successfully minted</div>
-        ) : minting ? (
-          <div>Minting...</div>
-        ) : checking ? (
-          <div>Checking...</div>
-        ) : canClaim ? (
-          <div onClick={doClaim}>Mint</div>
-        ) : (
-          <div>You have not reserved</div>
-        )}
+        <div>Mint ended</div>
         {(canClaim || imageUri || true) && (
           <div className="claim-share-btnGroup">
             <div onClick={() => log("share_lens", account || "")}>
