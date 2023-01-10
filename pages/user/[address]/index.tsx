@@ -62,6 +62,8 @@ export default function Main() {
   const [isSelf, setIsSelf] = useState<boolean>(false);
   const [showRadorGif, setShowRadorGif] = useState(false);
   const [downloadModalVisible, setDownloadModalVisible] = useState(false);
+  const [openScoreDropdown,setOpenScoreDropdown]= useState(false);
+  const [openLensDropdown,setOpenLensDropdown]= useState(false);
 
   const router = useRouter();
 
@@ -451,6 +453,8 @@ export default function Main() {
                 <div>
                   <div>
                     <Dropdown
+                     open={openLensDropdown}
+                     onOpenChange={(e:any) => setOpenLensDropdown(e)}
                       overlay={
                         <Menu>
                           {handlesList.map((t: any, i: number) => (
@@ -461,10 +465,12 @@ export default function Main() {
                                 setActiveHandleIndex(i);
                                 changeProfile(t.profileId);
                                 log("change_profile", account || "");
+                                setOpenLensDropdown(false);
                               }}
                             >
                               {t.handle}
                             </div>
+                            
                           ))}
                         </Menu>
                       }
@@ -618,16 +624,19 @@ export default function Main() {
                   <RightOutlined />
                 </div>
                 <Dropdown
+                  open={openScoreDropdown}
+                  onOpenChange={(e:any) => setOpenScoreDropdown(e)}
                   overlay={
                     <Menu>
                       {typeList.map((t, i) => (
                         <div
                           className="drop-menu"
                           key={i}
-                          onClick={() => {
+                          onClick={(e) => {
                             setActiveRankIndex(i);
                             setRankType(t.toLowerCase());
                             setRankPageNo(1);
+                            setOpenScoreDropdown(false);
                           }}
                         >
                           {t}
