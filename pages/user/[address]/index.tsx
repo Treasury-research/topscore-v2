@@ -48,7 +48,7 @@ export async function getServerSideProps(context: any){
 
 export default function Main({
   pId
-}) {
+}: any) {
   const { account, connectWallet } = useWeb3Context();
   const [showList, setShowList] = useState(false);
   const [handlesList, setHandlesList] = useState<any>([]);
