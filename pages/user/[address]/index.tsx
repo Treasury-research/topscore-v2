@@ -36,7 +36,19 @@ const typeList = [
   "Collection",
   "Curation",
 ];
-export default function Main() {
+
+export async function getServerSideProps(context: any){
+  return {
+    props: {
+      pId: context.query.queryProfileId
+    }
+  }
+
+}
+
+export default function Main({
+  pId
+}) {
   const { account, connectWallet } = useWeb3Context();
   const [showList, setShowList] = useState(false);
   const [handlesList, setHandlesList] = useState<any>([]);
@@ -411,7 +423,7 @@ export default function Main() {
         />
         <meta
           property="twitter:image"
-          content={`https://lens-api.knn3.xyz/api/lens/generate/shareImg/${currentProfile.profileId}`}
+          content={`https://lens-api.knn3.xyz/api/lens/generate/shareImg/${pId}`}
         />
         <meta property="og:title" content="Your 2022 Wrapped on Lens" />
         <meta
@@ -420,7 +432,7 @@ export default function Main() {
         />
         <meta
           property="og:image"
-          content={`https://lens-api.knn3.xyz/api/lens/generate/shareImg/${currentProfile.profileId}`}
+          content={`https://lens-api.knn3.xyz/api/lens/generate/shareImg/${pId}`}
         />
         <meta property="og:locale'" content="en_US" />
         <meta property="og:type" content="website" />
