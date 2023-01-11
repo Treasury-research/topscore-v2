@@ -114,6 +114,8 @@ export default function ClaimModal({ onCancel, profileId }: any) {
     checkCanClaim();
   }, [merkleProof]);
 
+  const shareUrl = `https://topscore.staging.knn3.xyz/user/${account}?queryProfileId=${profileId}`
+
   return (
     <Modal
       className="claimModal"
@@ -133,7 +135,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
           <div className="claim-share-btnGroup">
             <div onClick={() => log("share_lens", account || "")}>
               <LensterShareButton
-                title={`My 2022 Wrapped on Lens: https://topscore.knn3.xyz/user/${account}/${profileId} So what are your TopScore? What is your social personality? FreeMint LensRainbowNFT！@Knn3Network`}
+                title={`My 2022 Wrapped on Lens: ${shareUrl} So what are your TopScore? What is your social personality? FreeMint LensRainbowNFT！@Knn3Network`}
                 url={`https://topscore.knn3.xyz/user/${account}/${profileId}`}
                 hashtags="TopScore, Lens, Your2022WrappedonLens"
               >
@@ -142,9 +144,9 @@ export default function ClaimModal({ onCancel, profileId }: any) {
             </div>
             <div onClick={() => log("share_twitter", account || "")}>
               <TwitterShareButton2
-                url={`https://topscore.knn3.xyz/user/${account}/${profileId}`}
+                url={shareUrl}
                 hashtags={["TopScore", "Lens", "Your2022WrappedonLens"]}
-                title={`My 2022 Wrapped on Lens: https://topscore.knn3.xyz/user/${account}/${profileId} So what are your #TopScore? What is your social personality? FreeMint #LensRainbowNFT！@Knn3Network`}
+                title={`My 2022 Wrapped on Lens: ${shareUrl} So what are your #TopScore? What is your social personality? FreeMint #LensRainbowNFT！@Knn3Network`}
               >
                 <TwitterOutlined className="twitter-icon" />
               </TwitterShareButton2>
