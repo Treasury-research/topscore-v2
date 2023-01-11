@@ -4,8 +4,11 @@ const IconG2 = "/static/img/g2.svg";
 const IconG3 = "/static/img/g3.svg";
 const IconG4 = "/static/img/g4.svg";
 const Comment = (props: any) => {
+    if(!props.data){
+        return <div></div>
+    }
     const {
-        headImg,
+        headImg = "",
         name,
         lensHandle,
         msg,

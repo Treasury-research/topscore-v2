@@ -80,6 +80,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
     return (
       <a
         target="_blank"
+        rel="noreferrer"
         href={`https://lenster.xyz/?text=${encodeURIComponent(title)}&url=${url}&hashtags=${hashtags}&preview=true`}
       >
         {children}
@@ -91,6 +92,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
     return (
       <a
         target="_blank"
+        rel="noreferrer"
         href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&hashtags=${hashtags}&preview=true`}
       >
         {children}
