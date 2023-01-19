@@ -114,7 +114,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
     checkCanClaim();
   }, [merkleProof]);
 
-  const shareUrl = `https://topscore.knn3.xyz/user/${account}?queryProfileId=${profileId}`
+  const shareUrl = `https://topscore.staging.knn3.xyz/user/${account}?queryProfileId=${profileId}`
 
   return (
     <Modal
