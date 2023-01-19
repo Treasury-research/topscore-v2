@@ -122,7 +122,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
       open={true}
       onOk={handleOk}
       onCancel={handleCancel}
-      width={500}
+      width={700}
     >
       {imageUri ? (
         <img className="claim-img" src={imageUri} />
