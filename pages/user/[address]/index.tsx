@@ -11,8 +11,6 @@ import Wallet from "../../../components/WalletBtn";
 import { DownOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Dropdown, Space, Menu, Modal, Drawer, Pagination } from "antd";
 import Radar from "./components/Radar";
-import useErc721Contract from '../../../contract/useErc721Contract'
-import config from "../../../config";
 import Comment from "./components/comment";
 import Character from "./components/character";
 import HeaderBtn from "../../../components/HeaderBtn";
@@ -78,8 +76,6 @@ export default function Main({
   const [downloadModalVisible, setDownloadModalVisible] = useState(false);
   const [openScoreDropdown,setOpenScoreDropdown]= useState(false);
   const [openLensDropdown,setOpenLensDropdown]= useState(false);
-
-  const erc721Contract = useErc721Contract();
 
   const router = useRouter();
 
@@ -160,28 +156,6 @@ export default function Main({
       ...res.data,
     }));
   };
-
-  const getAllNfts = async () => {
-    const res = await erc721Contract.getAll(config.contracts.nft);
-    console.log('all nft balance', res);
-    // check if claimed
-    const res2 = await api.get('/v1/nft/query_ids', {
-      params:{
-        ids: '0' || res.join(',')
-      }
-    })
-
-    console.log('claim status', res2)
-
-    // doOpenBox();
-  }
-
-  const doOpenBox = async () => {
-    const res = await api.post(`/v1/nft/open/${0}`)
-    if(res.data){
-      console.log('open success')
-    }
-  }
 
   useEffect(() => {
     if (JSON.stringify(rankInfo) !== "{}") {
@@ -385,7 +359,6 @@ export default function Main({
     }
 
     setIsSelf(address === account);
-    getAllNfts();
   }, [address, account]);
 
   const changeProfile = (profileId: number) => {
