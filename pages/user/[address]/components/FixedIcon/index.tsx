@@ -68,7 +68,7 @@ const FixedIcon = (props: any) => {
             }
             {
                 showIconArry[3] &&
-                <div onMouseLeave={() => setIsHover(3, false)} onClick={() => window.open('http://discord.gg/UKzFVpHk4J')}>
+                <div onMouseLeave={() => setIsHover(3, false)} onClick={() => window.open('https://discord.gg/evVsTbauW2')}>
                     <img src={IconHoverDiscord} alt="" />
                 </div>
             }
