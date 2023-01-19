@@ -508,7 +508,7 @@ export default function Main({
               <>
                 {isSelf ? (
                   <>
-                    <div
+                    {/* <div
                       className="topscore-head-wallet-btn"
                       onClick={() => {
                         setIsModalOpen(true);
@@ -516,7 +516,7 @@ export default function Main({
                       }}
                     >
                       Mint
-                    </div>
+                    </div> */}
                   </>
                 ) : (
                   <>

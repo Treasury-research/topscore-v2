@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import {message} from 'antd'
+import { message } from 'antd'
 const Icon = "/static/img/topIcon.png";
+const headBg1 = "/static/img/headerPro.png";
 import useWeb3Context from "../../hooks/useWeb3Context";
 import api from "../../api";
 
@@ -57,14 +58,14 @@ const HeaderBtn = (props: any) => {
   return (
     <div>
       <div>
-        <img src={Icon} alt="" onClick={() => gotoMain()}/>
+        <img src={Icon} alt="" onClick={() => gotoMain()} />
       </div>
       {account && (
         <>
-        <div className="topscore-head-main-btn" onClick={goProfile}>
-          Profile
-        </div>
-        {isSelf && props.type === 'main' ? (
+          <div className="topscore-head-main-btn bg-profile" onClick={goProfile}>
+
+          </div>
+          {/* {isSelf && props.type === 'main' ? (
           <>
             {props.profileId && (
               <div
@@ -86,11 +87,31 @@ const HeaderBtn = (props: any) => {
               Check Mine
             </div>
           </>
-        )}
+        )} */}
+          {isSelf && props.type === 'main' ? (
+            <>
+              {props.profileId && (
+                <div
+                  className="shareBtn"
+                >
+                </div>
+              )}
+            </>
+          ) : props.type === 'main' && (
+            <>
+              <div
+                onClick={goMine}
+                className="topscore-head-wallet-btn downLoadBtn"
+              >
+                Check Mine
+              </div>
+            </>
+          )}
+
         </>
       )}
-      <div className="topscore-head-main-btn" onClick={goRainBow}>
-        Lens-Rainbow
+      <div className="topscore-head-main-btn bg-lens" onClick={goRainBow}>
+
       </div>
     </div>
   );
