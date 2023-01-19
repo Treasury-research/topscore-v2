@@ -114,7 +114,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
     checkCanClaim();
   }, [merkleProof]);
 
-  const shareUrl = `https://topscore.staging.knn3.xyz/user/${account}?queryProfileId=${profileId}`
+  const shareUrl = `https://topscore.knn3.xyz/user/${account}?queryProfileId=${profileId}`
 
   return (
     <Modal
@@ -131,7 +131,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
       )}
       <div className="claim-bottom">
         <div>Mint ended</div>
-        {(canClaim || imageUri || true) && (
+        {/* {(canClaim || imageUri || true) && (
           <div className="claim-share-btnGroup">
             <div onClick={() => log("share_lens", account || "")}>
               <LensterShareButton
@@ -152,7 +152,31 @@ export default function ClaimModal({ onCancel, profileId }: any) {
               </TwitterShareButton2>
             </div>
           </div>
-        )}
+        )} */}
+
+          {/** Claim V2 */}
+          {(canClaim || imageUri || true) && (
+            <div className="claim-share-btnGroup">
+              <div onClick={() => log("share_lens", account || "")}>
+                <LensterShareButton
+                  title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@KNN3Network #Lens`}
+                  url={`https://topscore.knn3.xyz/user/${account}/${profileId}`}
+                  hashtags="TopScore, Lens, Your2022WrappedonLens"
+                >
+                  <img src={IconLenster} />
+                </LensterShareButton>
+              </div>
+              <div onClick={() => log("share_twitter", account || "")}>
+                <TwitterShareButton2
+                  url={shareUrl}
+                  hashtags={["TopScore", "Lens", "Your2022WrappedonLens"]}
+                  title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@knn3_network #Lens`}
+                >
+                  <TwitterOutlined className="twitter-icon" />
+                </TwitterShareButton2>
+              </div>
+            </div>
+          )}
       </div>
     </Modal>
   );
