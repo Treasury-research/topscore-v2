@@ -636,8 +636,8 @@
 }
 
 .charcter-main {
-  margin-bottom: 400px;
-  margin-top: 300px;
+  margin-bottom: 200px;
+  margin-top: 200px;
 }
 
 .downLoadBtn {
@@ -1477,4 +1477,66 @@
 
 .slick-track{
   height: auto !important;
+}
+
+.char-pic-default{
+  position: relative;
+  font-size: 24px;
+  color: rgba(255, 255, 255, .8);
+  font-family: 'Jura';
+  .character-rank{
+    position: absolute;
+    top: 82px;
+    left: 336px;
+  }
+  .character-lens{
+    position: absolute;
+    top: 176px;
+    left: 361px;
+    width: 275px;
+    text-align: center;
+  }
+  .character-score{
+    position: absolute;
+    bottom: 66px;
+    left: 349px;
+  }
+  .clear-btn-group{
+    position: absolute;
+    right: 238px;
+    bottom: 22px;
+    width: 200px;
+    background: #000;
+    height: 60px;
+  }
+  .char-share-btnGroup{
+    overflow: hidden;
+    position: absolute;
+    right: 238px;
+    bottom: 13px;
+    >div {
+      float: left;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .twitter-icon {
+      color: rgb(40, 168, 223);
+      font-size: 24px;
+      line-height: 46px;
+    }
+
+    >div:nth-child(1) {
+      font-size: 20px;
+      margin-right: 16px;
+    }
+  }
 }

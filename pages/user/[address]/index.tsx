@@ -43,7 +43,6 @@ export async function getServerSideProps(context: any){
       pId: context.query.queryProfileId || null
     }
   }
-
 }
 
 export default function Main({
@@ -1079,7 +1078,12 @@ export default function Main({
               />
             )}
           <div className="charcter-main">
-            <Character profileId={currentProfile.profileId} />
+            <Character 
+              profileId={currentProfile.profileId} 
+              lens={currentProfile.handle} 
+              score={new BN(userInfo.score).toFixed(2)}
+              rank={new BN(userInfo.rank).toFormat()}
+            />
           </div>
         </div>
         <div
