@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import { message } from 'antd'
 const Icon = "/static/img/topIcon.png";
@@ -7,9 +7,18 @@ import useWeb3Context from "../../hooks/useWeb3Context";
 import api from "../../api";
 
 const HeaderBtn = (props: any) => {
+
   const [handlesList, setHandlesList] = useState<any>([]);
+
   const [isSelf, setIsSelf] = useState<boolean>(false);
+
+  const [showShare,setShowShare] = useState<boolean>(true);
+
   const { account } = useWeb3Context();
+
+  
+ let prevTime = Date.now();
+
   const router = useRouter()
 
   const { address } = router.query
@@ -55,6 +64,41 @@ const HeaderBtn = (props: any) => {
     setIsSelf(address === account);
   }, [address, account]);
 
+  const scrollToRef = () => {
+
+    const charHtmlElement = document.getElementById('charcter-scroll') as HTMLElement;
+
+    const mainHtmlElement = document.getElementById('topscore_scroll') as HTMLElement;
+
+    mainHtmlElement.scrollTo({
+      top: charHtmlElement.offsetTop - 100,
+      behavior: "smooth"
+    });
+
+    setShowShare(false)
+
+  };
+
+  const _handleScroll = () => {
+    const mainHtmlElement = document.getElementById('topscore_scroll') as HTMLElement;
+      const charHtmlElement = document.getElementById('charcter-scroll') as HTMLElement;
+      let nowTime = Date.now();
+      if(nowTime - prevTime > 500)
+      {
+        if(mainHtmlElement.scrollTop < charHtmlElement.offsetTop - charHtmlElement.offsetHeight){
+          setShowShare(true)
+        }else{
+          setShowShare(false)
+        }
+          prevTime = nowTime;
+      }
+  }
+
+  useEffect(() => {
+    const mainHtmlElement = document.getElementById('topscore_scroll') as HTMLElement;
+    mainHtmlElement.addEventListener('scroll', _handleScroll)
+  }, [])
+
   return (
     <div>
       <div>
@@ -90,9 +134,10 @@ const HeaderBtn = (props: any) => {
         )} */}
           {isSelf && props.type === 'main' ? (
             <>
-              {props.profileId && (
+              {props.profileId && showShare && (
                 <div
                   className="shareBtn"
+                  onClick={() => scrollToRef()}
                 >
                 </div>
               )}

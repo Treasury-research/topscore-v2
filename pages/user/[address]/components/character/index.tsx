@@ -247,37 +247,40 @@ const Character = (props: any) => {
         <div className="char-pic-default">
             {
                 imgUrl &&
-                <img src={imgUrl} alt="" />
+                <>
+                    <img src={imgUrl} alt="" />
+                    <div className="character-rank">{props.rank}</div>
+                    <div className="character-lens">{props.lens}</div>
+                    <div className="character-score">{props.score}</div>
+                    {
+                        isSelf && account ?
+                            (<div className="char-share-btnGroup">
+                                <div>
+                                    <LensterShareButton
+                                        title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@KNN3Network #Lens`}
+                                        url={`https://topscore.knn3.xyz/user/${account}/${props.profileId}`}
+                                        hashtags="@knn3_network #Lens"
+                                    >
+                                        <img src={IconLenster} />
+                                    </LensterShareButton>
+                                </div>
+                                <div>
+                                    <TwitterShareButton2
+                                        url={shareUrl}
+                                        hashtags={["@KNN3Network #Lens"]}
+                                        title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@knn3_network #Lens`}
+                                    >
+                                        <TwitterOutlined className="twitter-icon" />
+                                    </TwitterShareButton2>
+                                </div>
+                            </div>) :
+                            (
+                                <div className="clear-btn-group"></div>
+                            )
+                    }
+                </>
             }
-            <div className="character-rank">{props.rank}</div>
-            <div className="character-lens">{props.lens}</div>
-            <div className="character-score">{props.score}</div>
-            {
-                isSelf && account ?
-                (<div className="char-share-btnGroup">
-                    <div>
-                        <LensterShareButton
-                            title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@KNN3Network #Lens`}
-                            url={`https://topscore.knn3.xyz/user/${account}/${props.profileId}`}
-                            hashtags="TopScore, Lens, Your2022WrappedonLens"
-                        >
-                            <img src={IconLenster} />
-                        </LensterShareButton>
-                    </div>
-                    <div>
-                        <TwitterShareButton2
-                            url={shareUrl}
-                            hashtags={["TopScore", "Lens", "Your2022WrappedonLens"]}
-                            title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@knn3_network #Lens`}
-                        >
-                            <TwitterOutlined className="twitter-icon" />
-                        </TwitterShareButton2>
-                    </div>
-                </div>):
-                (
-                    <div className="clear-btn-group"></div>
-                )
-            }
+
 
         </div>
     );

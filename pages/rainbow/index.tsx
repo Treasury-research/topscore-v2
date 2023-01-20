@@ -49,7 +49,7 @@ export default function Character() {
     setTotal(res2.data.length);
     // let rdata = [{
     //   id: '234',
-    //   is_open: 1
+    //   is_open: 0
     // },
     //   , {
     //   id: '234',

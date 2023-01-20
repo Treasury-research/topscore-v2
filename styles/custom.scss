@@ -46,7 +46,7 @@
   }
 
   .toscore-content {
-    height: calc(100vh - 125px);
+    height: calc(100vh - 60px);
     width: auto;
     overflow-y: auto;
   }
@@ -638,6 +638,8 @@
 .charcter-main {
   margin-bottom: 200px;
   margin-top: 200px;
+  width: 1243px;
+  margin-left: -122px;
 }
 
 .downLoadBtn {
@@ -1469,6 +1471,7 @@
   bottom: 40px;
   right: 80px;
   cursor: pointer;
+  z-index: 999;
 }
 
 .rainbow-carou  .slick-dots-right{
@@ -1481,39 +1484,39 @@
 
 .char-pic-default{
   position: relative;
-  font-size: 24px;
+  font-size: 34px;
   color: rgba(255, 255, 255, .8);
   font-family: 'Jura';
   .character-rank{
     position: absolute;
-    top: 82px;
-    left: 336px;
+    top: -8px;
+    left: 360px;
   }
   .character-lens{
     position: absolute;
-    top: 176px;
-    left: 361px;
-    width: 275px;
+    top: 125px;
+    left: 390px;
+    width: 399px;
     text-align: center;
   }
   .character-score{
     position: absolute;
-    bottom: 66px;
-    left: 349px;
+    bottom: 50px;
+    left: 368px;
   }
   .clear-btn-group{
     position: absolute;
-    right: 238px;
-    bottom: 22px;
+    right: 294px;
+    bottom: 0px;
     width: 200px;
     background: #000;
-    height: 60px;
+    height: 85px;
   }
   .char-share-btnGroup{
     overflow: hidden;
     position: absolute;
-    right: 238px;
-    bottom: 13px;
+    right: 308px;
+    bottom: -18px;
     >div {
       float: left;
       height: 40px;
@@ -1532,8 +1535,10 @@
       color: rgb(40, 168, 223);
       font-size: 24px;
       line-height: 46px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-
     >div:nth-child(1) {
       font-size: 20px;
       margin-right: 16px;

@@ -161,7 +161,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
                 <LensterShareButton
                   title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@KNN3Network #Lens`}
                   url={`https://topscore.knn3.xyz/user/${account}/${profileId}`}
-                  hashtags="TopScore, Lens, Your2022WrappedonLens"
+                  hashtags="@knn3_network #Lens"
                 >
                   <img src={IconLenster} />
                 </LensterShareButton>
@@ -169,7 +169,7 @@ export default function ClaimModal({ onCancel, profileId }: any) {
               <div onClick={() => log("share_twitter", account || "")}>
                 <TwitterShareButton2
                   url={shareUrl}
-                  hashtags={["TopScore", "Lens", "Your2022WrappedonLens"]}
+                  hashtags={["@KNN3Network #Lens"]}
                   title={`🔥 Unlock your web3 social presence with #TopScore! Stand out from the crowd & explore your self-building potential! 🔗：@knn3_network #Lens`}
                 >
                   <TwitterOutlined className="twitter-icon" />

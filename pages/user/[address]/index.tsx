@@ -440,7 +440,7 @@ export default function Main({
         />
         <Wallet />
       </div>
-      <div className="toscore-content">
+      <div className="toscore-content" id="topscore_scroll">
         <div className="toscore-main">
           <div>
             {handlesList && handlesList.length > 0 ? (
@@ -1077,7 +1077,7 @@ export default function Main({
                 }}
               />
             )}
-          <div className="charcter-main">
+          <div className="charcter-main" id="charcter-scroll">
             <Character 
               profileId={currentProfile.profileId} 
               lens={currentProfile.handle} 
