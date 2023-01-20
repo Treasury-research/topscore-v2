@@ -272,10 +272,10 @@ body {
 }
 
 .claimModal .ant-modal-close {
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
 	background: #fff;
-	line-height: 40px;
+	line-height: 30px;
 	top: 16px;
 	text-align: center;
 	right: 16px;
@@ -283,11 +283,11 @@ body {
 }
 
 .claimModal .ant-modal-close .ant-modal-close-x {
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
 	color: #fff;
-	font-size: 24px;
+	font-size: 20px;
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -307,10 +307,10 @@ body {
 }
 
 .openPicModal .ant-modal-close {
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
 	background: #fff;
-	line-height: 40px;
+	line-height: 30px;
 	top: -16px;
 	text-align: center;
 	right: 16px;
@@ -319,11 +319,11 @@ body {
 }
 
 .openPicModal .ant-modal-close .ant-modal-close-x {
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
 	color: #fff;
-	font-size: 24px;
+	font-size: 20px;
 	display: flex;
     justify-content: center;
     align-items: center;

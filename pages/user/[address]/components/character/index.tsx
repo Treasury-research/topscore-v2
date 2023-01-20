@@ -50,9 +50,12 @@ const Character = (props: any) => {
 
     const [imgUrl, setImgUrl] = useState<any>("");
 
+    const [userInfo, setUserInfo] = useState<any>("");
+
     const getRadar = async () => {
         console.log(props.profileId)
-        const res: any = await api.get(`/lens/scores/14234`);
+        const res: any = await api.get(`/lens/scores/${props.profileId}`);
+        console.log(res)
         let arr = [
             { type: 'influReda', score: res.data.influReda * 1.05 },
             { type: 'campaignReda', score: res.data.campaignReda * 1.09 },
@@ -66,12 +69,19 @@ const Character = (props: any) => {
         setImgUrl(img)
     };
 
+    const getIndicators = async () => {
+        const res: any = await api.get(`/lens/indicators/${props.profileId}`);
+        setUserInfo((prev: any) => ({
+            ...prev,
+            ...res.data,
+        }));
+    };
+
     useEffect(() => {
-        if(props.profileId){
+        if (props.profileId) {
             getRadar();
-            console.log(props.profileId)
+            getIndicators();
         }
-        
     }, [props.profileId]);
 
     const getImg = (arr: any) => {
@@ -187,7 +197,7 @@ const Character = (props: any) => {
     return (
         <div>
             {
-                imgUrl && 
+                imgUrl &&
                 <img src={imgUrl} alt="" />
             }
         </div>

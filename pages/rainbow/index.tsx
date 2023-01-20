@@ -10,7 +10,7 @@ const ImgToLeft = "/static/img/toLeft.png";
 const ImgOpenResult = "/static/img/openResult.png";
 
 import HeaderBtn from "../../components/HeaderBtn";
-import { Modal } from "antd";
+import { Modal, Carousel } from "antd";
 
 export default function Character() {
   const { account, connectWallet } = useWeb3Context();
@@ -23,6 +23,8 @@ export default function Character() {
   const [isShowPic, setIsShowPic] = useState(false);
 
   const [activeNftDetail, setActiveNftDetail] = useState({});
+
+  const [total, setTotal] = useState(0);
 
   const testTokenId = 0;
 
@@ -44,8 +46,54 @@ export default function Character() {
         ids: testTokenId,
       },
     });
+    setTotal(res2.data.length);
+    // let rdata = [{
+    //   id: '234',
+    //   is_open: 1
+    // },
+    //   , {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // },
+    // {
+    //   id: '234',
+    //   is_open: 1
+    // }]
 
-    setNftList(res2.data);
+
+    let newList:any = [];
+    for (var i = 0; i < res2.data.length; i += 4) {
+      newList.push(res2.data.slice(i, i + 4));
+    }
+    setNftList(newList);
   };
 
   const doOpenBox = async (id: number) => {
@@ -108,47 +156,55 @@ export default function Character() {
               of K. Storing all the information of life's personality, color,
               gestation, growth and decline. Enunciating the colorful hue of K.
             </p>
-            {account ? (
-              <div className="pic-con">
-                {nftList.map((item: any) =>
-                  item.is_open === 0 ? (
-                    <div className="pic-item">
-                      <div className="pic-open-item">
-                        <img src={ImgNoOpen} />
-                      </div>
-                      <div className="pic-open-btn">
-                        <div className="reveal">#{item.id}</div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="pic-item">
-                      <div className="pic-open-item">
-                        <img src={ImgNoOpen} />
-                      </div>
-                      <div className="pic-open-btn">
-                        <div className="arrow">
-                          <img src={ImgToRight} />
-                        </div>
+            <div className="carou-con">
+              <Carousel dotPosition={'right'} className="rainbow-carou" autoplay>
+                {
+                  nftList.map((t: any, i: number) => (
+                    <div>
+                      <div className="pic-con">
+                        {t.map((item: any) =>
+                          item.is_open === 0 ? (
+                            <div className="pic-item">
+                              <div className="pic-open-item">
+                                <img src={ImgNoOpen} />
+                              </div>
+                              <div className="pic-open-btn">
+                                <div className="reveal">#{item.id}</div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="pic-item">
+                              <div className="pic-open-item">
+                                <img src={ImgNoOpen} />
+                              </div>
+                              <div className="pic-open-btn">
+                                <div className="arrow">
+                                  <img src={ImgToRight} />
+                                </div>
 
-                        <div
-                          className="reveal"
-                          onClick={() => doOpenBox(item.id)}
-                        >
-                          REVEAL
-                        </div>
-                        <div className="arrow">
-                          <img src={ImgToLeft} />
-                        </div>
+                                <div
+                                  className="reveal"
+                                  onClick={() => doOpenBox(item.id)}
+                                >
+                                  REVEAL
+                                </div>
+                                <div className="arrow">
+                                  <img src={ImgToLeft} />
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        )}
                       </div>
                     </div>
-                  )
-                )}
-              </div>
-            ) : (
-              <div className="reveal" onClick={() => connectWallet()}>
-                Connect Wallet
-              </div>
-            )}
+                  ))
+                }
+              </Carousel>
+            </div>
+            {
+              total !== 0 &&
+              <div className="pic-total">Total:{total}</div>
+            }
           </div>
         )}
       </div>

@@ -59,7 +59,7 @@
 
     >div:nth-child(1) {
       overflow: hidden;
-      margin-top: 200px;
+      margin-top: calc((100vh - 610px) / 2);
 
       >div:nth-child(1) {
         float: left;
@@ -705,10 +705,14 @@
 
   .character-content-scroll {
     height: calc(100vh - 80px);
-    width: 100%;
     overflow: auto;
     margin-bottom: 100px;
     position: relative;
+
+    >div{
+      width: 1400px;
+      margin: 0 auto;
+    }
   }
 
   .char-vedio {
@@ -742,22 +746,34 @@
   }
   .open-pic{
     padding: 0 80px;
-    margin-top: 80px;
+    margin-top: 80px !important;
     >p{
       margin-bottom: 20px;
       font-family: 'Jura';
       color: rgba(255,255,255,0.8);
-      font-size: 16px;
-      text-align: center;
-      line-height: 20px;
+      font-size: 18px;
+      text-align: left;
+      line-height: 30px;
     }
   }
+
+  .pic-total{
+    text-align: center;
+    font-family: 'Jura';
+    font-size: 18px;
+    margin: 20px 0;
+  }
+
   .pic-con{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    overflow: hidden;
     margin-top: 80px;
+    >.pic-item:nth-child(4n){
+      margin-right: 0;
+    }
     >.pic-item{
+      width: 240px;
+      float: left;
+      margin-right: calc((100% - 960px) / 3);
       margin-bottom: 40px;
       .pic-open-item{
         width: 240px;
@@ -1453,4 +1469,12 @@
   bottom: 40px;
   right: 80px;
   cursor: pointer;
+}
+
+.rainbow-carou  .slick-dots-right{
+  right: -40px;
+}
+
+.slick-track{
+  height: auto !important;
 }
