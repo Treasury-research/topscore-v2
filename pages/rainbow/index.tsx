@@ -4,11 +4,11 @@ import useWeb3Context from "../../hooks/useWeb3Context";
 import config from "../../config";
 import useErc721Contract from "../../contract/useErc721Contract";
 import Wallet from "../../components/WalletBtn";
-const ImgNoOpen = "/static/img/noOpen.png";
 const ImgToRight = "/static/img/toRight.png";
 const ImgToLeft = "/static/img/toLeft.png";
 const ImgOpenResult = "/static/img/openResult.png";
-
+const ImgBgStory = "/static/img/bg-story-1.gif";
+const ImgWhole = "/static/img/whole-top.png";
 import HeaderBtn from "../../components/HeaderBtn";
 import { Modal, Carousel } from "antd";
 
@@ -89,7 +89,7 @@ export default function Character() {
     // }]
 
 
-    let newList:any = [];
+    let newList: any = [];
     for (var i = 0; i < res2.data.length; i += 4) {
       newList.push(res2.data.slice(i, i + 4));
     }
@@ -133,7 +133,7 @@ export default function Character() {
 
         {step === 3 && (
           <div className="open-pic">
-            <p className="text">
+            {/* <p className="text">
               At dawn, the warm, amber light shines and all things come to life.
               A crystal prism sits on the windowsill, refracting the light into
               a spectrum of colors. Rainbows dance across the wall, a seven-hued
@@ -155,7 +155,8 @@ export default function Character() {
               The combination of these six entities determines the construction
               of K. Storing all the information of life's personality, color,
               gestation, growth and decline. Enunciating the colorful hue of K.
-            </p>
+            </p> */}
+            <img src={ImgBgStory} alt="" />
             <div className="carou-con">
               <Carousel dotPosition={'right'} className="rainbow-carou" autoplay>
                 {
@@ -166,7 +167,8 @@ export default function Character() {
                           item.is_open === 0 ? (
                             <div className="pic-item">
                               <div className="pic-open-item">
-                                <img src={ImgNoOpen} />
+                                <div className="text-top">YOUR 2022 WRAPPED ON LENS</div>
+                                <div className="text-bot">MYSTERY BOH</div>
                               </div>
                               <div className="pic-open-btn">
                                 <div className="reveal">#{item.id}</div>
@@ -175,13 +177,13 @@ export default function Character() {
                           ) : (
                             <div className="pic-item">
                               <div className="pic-open-item">
-                                <img src={ImgNoOpen} />
+                                <div className="text-top">YOUR 2022 WRAPPED ON LENS</div>
+                                <div className="text-bot">MYSTERY BOH</div>
                               </div>
                               <div className="pic-open-btn">
                                 <div className="arrow">
                                   <img src={ImgToRight} />
                                 </div>
-
                                 <div
                                   className="reveal"
                                   onClick={() => doOpenBox(item.id)}
@@ -213,10 +215,14 @@ export default function Character() {
         open={isShowPic}
         onOk={handleOk}
         onCancel={handleCancel}
-        width={500}
       >
         <div>
-          <img src={ImgOpenResult} />
+          <div className="open-imgTitle">
+            <img src={ImgWhole} />
+          </div>
+          <div className="open-imgResult">
+            <img src={ImgOpenResult} />
+          </div>
         </div>
       </Modal>
     </div>
