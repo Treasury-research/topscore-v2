@@ -96,7 +96,9 @@ const HeaderBtn = (props: any) => {
 
   useEffect(() => {
     const mainHtmlElement = document.getElementById('topscore_scroll') as HTMLElement;
-    mainHtmlElement.addEventListener('scroll', _handleScroll)
+    if(mainHtmlElement){
+      mainHtmlElement.addEventListener('scroll', _handleScroll)
+    }
   }, [])
 
   return (
