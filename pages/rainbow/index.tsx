@@ -22,11 +22,11 @@ export default function Character() {
 
   const [isShowPic, setIsShowPic] = useState(false);
 
-  const [activeNftDetail, setActiveNftDetail] = useState({});
+  const [activeNftDetail, setActiveNftDetail] = useState<any>({});
 
   const [total, setTotal] = useState(0);
 
-  const testTokenId = 0;
+  // const testTokenId = 0;
 
   const handleOk = () => {
     setIsShowPic(false);
@@ -42,8 +42,7 @@ export default function Character() {
     // check if claimed
     const res2: any = await api.get("/v1/nft/query_ids", {
       params: {
-        // ids: res.join(","),
-        ids: testTokenId,
+        ids: res.join(','),
       },
     });
     setTotal(res2.data.length);
@@ -97,7 +96,7 @@ export default function Character() {
   };
 
   const doOpenBox = async (id: number) => {
-    const res = await api.post(`/v1/nft/open/${testTokenId}`);
+    const res = await api.post(`/v1/nft/open/${id}`);
     if (res.data) {
       console.log("open success");
       setActiveNftDetail(res.data)
@@ -164,7 +163,7 @@ export default function Character() {
                     <div>
                       <div className="pic-con">
                         {t.map((item: any) =>
-                          item.is_open === 0 ? (
+                          item.is_open === 1 ? (
                             <div className="pic-item">
                               <div className="pic-open-item">
                                 <div className="text-top">YOUR 2022 WRAPPED ON LENS</div>
@@ -221,7 +220,7 @@ export default function Character() {
             <img src={ImgWhole} />
           </div>
           <div className="open-imgResult">
-            <img src={ImgOpenResult} />
+            <img src={activeNftDetail.token_uri} />
           </div>
         </div>
       </Modal>
