@@ -165,10 +165,11 @@ export default function Character() {
                         {t.map((item: any) =>
                           item.is_open === 1 ? (
                             <div className="pic-item">
-                              <div className="pic-open-item">
+                              {/* <div className="pic-open-item">
                                 <div className="text-top">YOUR 2022 WRAPPED ON LENS</div>
                                 <div className="text-bot">MYSTERY BOH</div>
-                              </div>
+                              </div> */}
+                              <img src={item.token_uri} />
                               <div className="pic-open-btn">
                                 <div className="reveal">#{item.id}</div>
                               </div>
