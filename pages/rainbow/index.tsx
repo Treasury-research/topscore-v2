@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import api from "../../api";
 import useWeb3Context from "../../hooks/useWeb3Context";
 import config from "../../config";
@@ -14,9 +14,10 @@ import { Modal, Carousel } from "antd";
 
 export default function Character() {
   const { account, connectWallet } = useWeb3Context();
+
   const erc721Contract = useErc721Contract();
 
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
 
   const [nftList, setNftList] = useState([]);
 
@@ -26,7 +27,7 @@ export default function Character() {
 
   const [total, setTotal] = useState(0);
 
-  // const testTokenId = 0;
+  const [isShowSkip, setIsShowSkip] = useState(false);
 
   const handleOk = () => {
     setIsShowPic(false);
@@ -46,48 +47,6 @@ export default function Character() {
       },
     });
     setTotal(res2.data.length);
-    // let rdata = [{
-    //   id: '234',
-    //   is_open: 0
-    // },
-    //   , {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // },
-    // {
-    //   id: '234',
-    //   is_open: 1
-    // }]
-
-
     let newList: any = [];
     for (var i = 0; i < res2.data.length; i += 4) {
       newList.push(res2.data.slice(i, i + 4));
@@ -111,7 +70,28 @@ export default function Character() {
     getAllNfts();
   }, [account]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsShowSkip(true)
+    },5000)
+  });
+
+  const skipOperate = () => {
+    if(!account){
+      setStep(2)
+    }else{
+      setStep(3)
+    }
+  }
+
+  const enterOperate = async () => {
+      const connectedAddress: string = await connectWallet();
+      if (connectedAddress) {
+        setStep(3)
+      }
+  } 
   return (
+
     <div className="character">
       <div className="character-head">
         <HeaderBtn />
@@ -120,41 +100,31 @@ export default function Character() {
       <div className="character-content-scroll">
         {step === 1 && (
           <div className="char-vedio">
-            <div className="skip" onClick={() => setStep(2)}></div>
+            <video
+              ref={countRef}
+              loop
+              autoPlay
+              muted
+              src="./../../static/vedio_rainbow.mp4"
+            >
+              {/* <source src="./../../static/vedio_rainbow.mp4" /> */}
+            </video>
+            {
+              isShowSkip && 
+              <div className="skip" onClick={() => skipOperate()}></div>
+            }
+            
           </div>
         )}
 
         {step === 2 && (
           <div className="char-vedio">
-            <div className="enter"></div>
+            <div className="enter" onClick={() => enterOperate()}></div>
           </div>
         )}
 
         {step === 3 && (
           <div className="open-pic">
-            {/* <p className="text">
-              At dawn, the warm, amber light shines and all things come to life.
-              A crystal prism sits on the windowsill, refracting the light into
-              a spectrum of colors. Rainbows dance across the wall, a seven-hued
-              display of light and shadow. But one strange, golden ray slices
-              through the prism, creating a crevice in its facade. A joyful
-              breeze rushes into the room, and K, a mysterious new life form, is
-              born in silence. Droplets of water playfully roll around K, as it
-              explores its new surroundings.
-            </p>
-            <p className="text">
-              Glimmering faintly in the air, a spark of light. Digital
-              entanglements beneath K's skin reflecting different shades. These
-              fragments of words come from the Lens. Entwined, braided and
-              combined with one another. Forming six distinct entities. And
-              evolving into twenty-one personalities in the first century of a
-              new era.
-            </p>
-            <p className="text">
-              The combination of these six entities determines the construction
-              of K. Storing all the information of life's personality, color,
-              gestation, growth and decline. Enunciating the colorful hue of K.
-            </p> */}
             <img src={ImgBgStory} alt="" />
             <div className="carou-con">
               <Carousel dotPosition={'right'} className="rainbow-carou" autoplay>
@@ -165,10 +135,6 @@ export default function Character() {
                         {t.map((item: any) =>
                           item.is_open === 1 ? (
                             <div className="pic-item">
-                              {/* <div className="pic-open-item">
-                                <div className="text-top">YOUR 2022 WRAPPED ON LENS</div>
-                                <div className="text-bot">MYSTERY BOH</div>
-                              </div> */}
                               <img src={item.token_uri} />
                               <div className="pic-open-btn">
                                 <div className="reveal">#{item.id}</div>

@@ -706,7 +706,7 @@
   }
 
   .character-content-scroll {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
     overflow: auto;
     margin-bottom: 100px;
     position: relative;
@@ -715,18 +715,26 @@
       width: 1400px;
       margin: 0 auto;
     }
+    .char-vedio{
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .char-vedio {
-    height: 100%;
-    width: 100%;
     position: relative;
+
+    video{
+      height: 100%;
+      width: 100%;
+      object-fit: fill;
+    }
 
     .skip {
       position: absolute;
-      bottom: 40px;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -50%);
       background: url("../static/img/skip.png") no-repeat center center;
       background-size: cover;
       height: 50px;
