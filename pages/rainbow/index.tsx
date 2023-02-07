@@ -73,23 +73,23 @@ export default function Character() {
   useEffect(() => {
     setTimeout(() => {
       setIsShowSkip(true)
-    },5000)
+    }, 5000)
   });
 
   const skipOperate = () => {
-    if(!account){
+    if (!account) {
       setStep(2)
-    }else{
+    } else {
       setStep(3)
     }
   }
 
   const enterOperate = async () => {
-      const connectedAddress: string = await connectWallet();
-      if (connectedAddress) {
-        setStep(3)
-      }
-  } 
+    const connectedAddress: string = await connectWallet();
+    if (connectedAddress) {
+      setStep(3)
+    }
+  }
   return (
 
     <div className="character">
@@ -101,24 +101,23 @@ export default function Character() {
         {step === 1 && (
           <div className="char-vedio">
             <video
-              ref={countRef}
               loop
               autoPlay
               muted
               src="./../../static/vedio_rainbow.mp4"
             >
-              {/* <source src="./../../static/vedio_rainbow.mp4" /> */}
             </video>
             {
-              isShowSkip && 
+              isShowSkip &&
               <div className="skip" onClick={() => skipOperate()}></div>
             }
-            
+
           </div>
         )}
 
         {step === 2 && (
           <div className="char-vedio">
+            <div className="enter-bg"></div>
             <div className="enter" onClick={() => enterOperate()}></div>
           </div>
         )}
@@ -175,6 +174,19 @@ export default function Character() {
             }
           </div>
         )}
+
+        {step === 3 &&
+          <div className="open-pic-video">
+            <video
+              loop
+              autoPlay
+              muted
+              src="./../../static/vedio_rainbow.mp4"
+            >
+            </video>
+          </div>
+        }
+
       </div>
       <Modal
         className="openPicModal"
