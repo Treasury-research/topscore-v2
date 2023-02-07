@@ -743,7 +743,7 @@
     }
     .enter{
       position: absolute;
-      bottom: 50%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       background: url("../static/img/enter.png") no-repeat center center;
@@ -760,6 +760,7 @@
     background-size: cover;
     height: 100%;
     width: 100%;
+    opacity: 0.3;
   }
 
   .open-pic{
